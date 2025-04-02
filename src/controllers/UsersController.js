@@ -4,7 +4,7 @@ const AppError = require("../utils/AppError");
 
 class UsersController {
   async create(request, response) {
-    const { name, email, password } = request.body;
+    const { name, email, password, is_admin = false } = request.body;
 
     const checkUserExists = await knex("users").where({ email }).first();
     if (checkUserExists) {
@@ -16,7 +16,8 @@ class UsersController {
     await knex("users").insert({
       name,
       email,
-      password: hashedPassword
+      password: hashedPassword,
+      is_admin
     });
 
     return response.status(201).json();
