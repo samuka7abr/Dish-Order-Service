@@ -20,3 +20,4 @@ dishesRoutes.delete("/:id", ensureAuthenticated, dishesController.delete);
 dishesRoutes.patch("/:id/photo", ensureAuthenticated, upload.single("file"), dishesPhotoController.update);
 
 module.exports = dishesRoutes;
+ 
