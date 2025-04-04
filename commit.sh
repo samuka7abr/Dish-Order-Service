@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 echo "Commitando em: $(pwd)"
 echo "Selecione o tipo de commit:"
 echo "1 - feat"
