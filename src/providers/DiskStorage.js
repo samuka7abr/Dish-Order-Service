@@ -1,4 +1,4 @@
-const uploadConfig = require("../configs/upload");
+const uploadConfig = require("../configs/uploads");
 const path = require("path");
 const fs = require("fs");
 
