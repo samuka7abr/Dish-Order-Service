@@ -1,15 +1,22 @@
-const { Router } = require("express");
-const DishesController = require("../controllers/DishesController");
+const uploadConfig = require("../configs/uploads");
+const { Router, request } = require("express");
+const multer = require("multer");
+
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
+const DishesController = require("../controllers/DishesController");
 
-const dishesRoutes = Router();
 const dishesController = new DishesController();
+const dishesRoutes = Router();
+const upload = multer(uploadConfig.MULTER);
 
-dishesRoutes.post("/", ensureAuthenticated, dishesController.create);
-dishesRoutes.get("/", dishesController.index);
-dishesRoutes.get("/:id", dishesController.show);
-dishesRoutes.put("/:id", ensureAuthenticated, dishesController.update);
 dishesRoutes.delete("/:id", ensureAuthenticated, dishesController.delete);
-dishesRoutes.patch
+dishesRoutes.put("/:id", ensureAuthenticated, dishesController.update);
+dishesRoutes.post("/", ensureAuthenticated, dishesController.create);
+dishesRoutes.patch("/foto", ensureAuthenticated, upload.single("file"), (request, response) => {
+    console.log(request.file.filename);
+    response.json();
+});
+dishesRoutes.get("/:id", dishesController.show);
+dishesRoutes.get("/", dishesController.index);
 
 module.exports = dishesRoutes;
