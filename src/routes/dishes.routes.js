@@ -10,5 +10,6 @@ dishesRoutes.get("/", dishesController.index);
 dishesRoutes.get("/:id", dishesController.show);
 dishesRoutes.put("/:id", ensureAuthenticated, dishesController.update);
 dishesRoutes.delete("/:id", ensureAuthenticated, dishesController.delete);
+dishesRoutes.patch
 
 module.exports = dishesRoutes;
